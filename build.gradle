@@ -61,14 +61,6 @@ task typeCheck(type: NodeTask) {
     args = "-p tsconfig.json --noEmit".tokenize()
 }
 
-task start(type: NodeTask) {
-    dependsOn npmInstall
-    environment = [NODE_ENV: "dev"]
-
-    script = file("${npmBin}/webpack-dev-server")
-    args = "--config webpack.dev.js".tokenize()
-}
-
 
 ///////////////////////////
 // Build
@@ -79,6 +71,20 @@ task bundle(type: NodeTask) {
     environment = [BABEL_ENV: "es", NODE_ENV: "production"]
     script = file("${npmBin}/webpack")
     args = "--config webpack.config.js".tokenize()
+}
+
+task processCSS(type: NodeTask) {
+    dependsOn npmInstall
+
+    script = file("${npmBin}/postcss")
+    args = "src/style.css --output style/style.css".tokenize()
+}
+
+task devCSS(type: NodeTask) {
+    dependsOn npmInstall
+
+    script = file("${npmBin}/postcss")
+    args = "src/style.css --output examples/style.css".tokenize()
 }
 
 task transpileES(type: NodeTask) {
@@ -98,5 +104,13 @@ task transpileCommonJs(type: NodeTask) {
 }
 
 task build {
-    dependsOn generateTypes, bundle, transpileES, transpileCommonJs
+    dependsOn generateTypes, bundle, transpileES, transpileCommonJs, processCSS
+}
+
+task start(type: NodeTask) {
+    dependsOn devCSS, bundle
+    environment = [NODE_ENV: "dev"]
+
+    script = file("${npmBin}/webpack-dev-server")
+    args = "--config webpack.dev.js".tokenize()
 }
