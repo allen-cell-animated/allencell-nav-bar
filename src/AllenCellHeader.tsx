@@ -31,14 +31,14 @@ export default function AllenCellHeader(props: AllenHeaderProps) {
                 show: show,
             })}
         >
-            <a className='logoContainer' href="https://allencell.org">
+            <a className='logo-container' href="https://allencell.org">
                 <img
                     className='logo'
-                    src="./assets/allencell-logo-white.png"
+                    src="https://s3-us-west-2.amazonaws.com/www.allencell.org/allencell-logo-white.png"
                     alt="Allen Cell Explorer Home Page"
                 />
             </a>
-            <div className='linksContainer'>
+            <div className='links-container'>
                 {links.map((link) => (
                     <HeaderLink key={link.href} link={link} />
                 ))}
