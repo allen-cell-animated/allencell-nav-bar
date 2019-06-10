@@ -21,11 +21,11 @@ pipeline {
                 sh "./gradlew npmInstall"
             }
         }
-        stage ("lint, type check, and test") {
+        stage ("lint, type check") {
             steps {
                 sh "./gradlew lint"
                 sh "./gradlew typeCheck"
-                sh "./gradlew test"
+                // sh "./gradlew test"
             }
         }
         stage ("build and publish") {
