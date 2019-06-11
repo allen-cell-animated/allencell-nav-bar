@@ -1,4 +1,4 @@
-.header {
+.allencell-header {
     --copy-color: #fff;
     --border-color: #fff;
     transition: top 1s ease-in;
@@ -16,7 +16,7 @@
     display: flex;
 }
 
-.header.show {
+.allencell-header.show {
     top: 0;
 }
 
