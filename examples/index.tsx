@@ -6,6 +6,7 @@ import './style.css';
 ReactDOM.render(
     <AllenCellHeader 
         show={true}
+        className="my-header"
     />,
     document.getElementById("root")
 );
