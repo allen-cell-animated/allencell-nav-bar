@@ -6,4 +6,4 @@ export interface AllenHeaderProps {
 /**
  * Simplified version of the allencell.org showAllenCellHeader created in Weebly.
  */
-export default function AllenCellHeader(props: AllenHeaderProps): JSX.Element;
+export default function AllenCellHeader({ show, className }: AllenHeaderProps): JSX.Element;

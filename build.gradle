@@ -92,7 +92,7 @@ task transpileES(type: NodeTask) {
 
     environment = [TS_NODE_PROJECT: "tsconfig.es.json", BABEL_ENV: "es"]
     script = file("${npmBin}/babel")
-    args = "src --out-dir es --extensions .ts --ignore src/**/*.test.ts".tokenize()
+    args = "src --out-dir es --extensions .ts,.tsx --ignore src/**/*.test.ts".tokenize()
 }
 
 task transpileCommonJs(type: NodeTask) {
@@ -100,7 +100,7 @@ task transpileCommonJs(type: NodeTask) {
 
     environment = [TS_NODE_PROJECT: "tsconfig.commonjs.json"]
     script = file("${npmBin}/babel")
-    args = "src --out-dir lib --extensions .ts --ignore src/**/*.test.ts".tokenize()
+    args = "src --out-dir lib --extensions .ts,.tsx --ignore src/**/*.test.ts".tokenize()
 }
 
 task build {
