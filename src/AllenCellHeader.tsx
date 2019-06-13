@@ -23,11 +23,11 @@ const HeaderLink: React.FunctionComponent<HeaderLinkProps> = (props: HeaderLinkP
 /**
  * Simplified version of the allencell.org showAllenCellHeader created in Weebly.
  */
-export default function AllenCellHeader(props: AllenHeaderProps) {
-    const { show } = props;
+export default function AllenCellHeader({ show = true, className = ''}: AllenHeaderProps) {
     return (
         <header
-            className={classNames('header', {
+            className={classNames('allencell-header', {
+                [className]: !!className,
                 show: show,
             })}
         >
