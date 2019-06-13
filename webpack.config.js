@@ -4,7 +4,7 @@ module.exports = {
     entry: './src/index.ts',
     output: {
         filename: 'index.js',
-        library: 'allen-cell-nav-bar',
+        library: 'allencell-nav-bar',
         libraryTarget: 'umd',
         path: path.resolve(__dirname, 'dist'),
     },
@@ -17,12 +17,6 @@ module.exports = {
                 use: [
                     { loader: 'babel-loader' },
                 ],
-            },
-            {
-                test: /\.(png|svg|jpg|gif)$/,
-                use: [
-                    'file-loader'
-                ]
             }
         ],
     },

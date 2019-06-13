@@ -1,5 +1,5 @@
 {
-  "name": "allen-cell-nav-bar",
+  "name": "allencell-nav-bar",
   "version": "1.0.0",
   "description": "Nav bar for allen cell subdomains.",
   "main": "lib/index.js",
@@ -11,6 +11,7 @@
     "es",
     "lib",
     "dist",
+    "style",
     "type-declarations",
     "README.md",
     "package.json"
