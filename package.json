@@ -1,5 +1,5 @@
 {
-  "name": "allencell-nav-bar",
+  "name": "@aics/allencell-nav-bar",
   "version": "1.0.1",
   "description": "Nav bar for allen cell subdomains.",
   "main": "lib/index.js",
@@ -17,7 +17,7 @@
     "package.json"
   ],
   "publishConfig": {
-    "registry": "https://artifactory.corp.alleninstitute.org/artifactory/api/npm/npm-local/"
+    "access": "public"
   },
   "author": "",
   "license": "MIT",
