@@ -26,7 +26,7 @@ pipeline {
                 sh "./gradlew npm_install"
             }
         }
-        stage ("integration: lint, type check, test, and build") {
+        stage ("integration: lint, type check, and build") {
             when {
                 anyOf {
                     expression { !IGNORE_AUTHORS.contains(gitAuthor()) }
