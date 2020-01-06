@@ -14,7 +14,7 @@ interface HeaderLinkProps {
 
 const HeaderLink: React.FunctionComponent<HeaderLinkProps> = (props: HeaderLinkProps) => {
     return (
-        <div className='link'>
+        <div className='link wsite-menu'>
             <a href={props.link.href}>{props.link.display}</a>
         </div>
     );
