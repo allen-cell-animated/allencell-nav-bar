@@ -1,41 +1,51 @@
+String[] IGNORE_AUTHORS = ["jenkins", "Jenkins User", "Jenkins Builder"]
+
 pipeline {
     options {
         disableConcurrentBuilds()
         timeout(time: 1, unit: "HOURS")
     }
-    agent {
-        node {
-            label "node-packages"
-        }
-    }
+    agent any
     triggers {
         pollSCM("H */4 * * 1-5")
     }
     parameters {
-        booleanParam(name: 'PUBLISH', defaultValue: false, description: "Publish to npm-local repository in Artifactory")
+        booleanParam(name: "PUBLISH", defaultValue: false, description: "Publish to npm")
+        choice(name: "VERSION", choices: ["patch", "minor", "major", "prepatch", "preminor", "premajor", "prerelease"], description: "Release type. This is only used when PUBLISH is set to true.")
     }
     stages {
-        stage ("node and npm setup") {
+        stage ("initialize") {
+            when {
+                anyOf {
+                    expression { !IGNORE_AUTHORS.contains(gitAuthor()) }
+                    expression { return params.PUBLISH }
+                }
+            }
             steps {
                 this.notifyBB("INPROGRESS")
-                sh "./gradlew npmInstall"
+                sh "./gradlew npm_install"
             }
         }
-        stage ("lint, type check") {
+        stage ("integration: lint, type check, and build") {
+            when {
+                anyOf {
+                    expression { !IGNORE_AUTHORS.contains(gitAuthor()) }
+                    expression { return params.PUBLISH }
+                }
+            }
             steps {
                 sh "./gradlew lint"
                 sh "./gradlew typeCheck"
                 // sh "./gradlew test"
+                sh "./gradlew build"
             }
         }
-        stage ("build and publish") {
+        stage ("publish") {
             when {
-                expression {
-                    return params.PUBLISH
-                }
+                expression { return params.PUBLISH }
             }
             steps {
-                sh "./gradlew build"
+                sh "./gradlew version -PreleaseType=${params.VERSION}"
                 sh "./gradlew npm_publish"
             }
         }
@@ -67,4 +77,8 @@ def notifyBB(String state) {
             prependParentProjectKey: false,
             projectKey: "SW",
             stashServerBaseUrl: "https://aicsbitbucket.corp.alleninstitute.org"
+}
+
+def gitAuthor() {
+    sh(returnStdout: true, script: 'git log -1 --format=%an').trim()
 }

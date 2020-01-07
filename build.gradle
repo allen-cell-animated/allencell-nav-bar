@@ -114,3 +114,12 @@ task start(type: NodeTask) {
     script = file("${npmBin}/webpack-dev-server")
     args = "--config webpack.dev.js".tokenize()
 }
+
+ext {
+    // Default version bump performed by `version` task. Can be overriden by commandline `-PreleaseType` flag.
+    releaseType = project.properties["releaseType"] ?: "patch"
+}
+
+task version(type: NodeTask) {
+    args = "version ${releaseType}".tokenize()
+}
