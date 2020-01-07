@@ -120,6 +120,6 @@ ext {
     releaseType = project.properties["releaseType"] ?: "patch"
 }
 
-task version(type: NodeTask) {
+task version(type: NpmTask) {
     args = "version ${releaseType}".tokenize()
 }
