@@ -8,6 +8,7 @@
   "types": "type-declarations",
   "scripts": {
     "build": "npm-run-all --print-label clean --parallel transpile:commonjs transpile:es generateTypes",
+    "prepublish": "npm run build",
     "clean": "rimraf es lib type-declarations",
     "generateTypes": "tsc -p tsconfig.base.json --emitDeclarationOnly",
     "lint": "eslint src/**/*.ts",
