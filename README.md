@@ -1,9 +1,16 @@
-template-npm-package
-=======================
+# Allencell nav bar
 
-This is a template for an npm package. It supports three output targets: CommonJS, EcmaScript module, and UMD.
+Nav bar for subdomain applications that matches our navbar on allencell.org
 
-Description of Gradle tasks:
+---
+
+## Description
+
+Main features in a brief descriptive text.
+
+## Installation
+
+Gradle tasks:
 
 | script | comments |
 | ------ | -------- |
@@ -18,3 +25,17 @@ Description of Gradle tasks:
 | test | run `mocha`; searches for any files matching the pattern "src/**/*.test.js" |
 | typeCheck | run `tsc` in type-check only mode |
 | start  | runs an example app from `examples` for testing. Runs at `localhost:8080/public/` |
+
+## Documentation
+
+If you have more extensive technical documentation (whether generated or not), ensure they are published to the following address:
+For full package documentation please visit
+[organization.github.io/projectname](https://organization.github.io/projectname/index.html).
+
+## Quick Start
+
+Describe the most common operations, step by step, that a first time user would want to know, here.
+
+## Development
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for information related to developing the code.
